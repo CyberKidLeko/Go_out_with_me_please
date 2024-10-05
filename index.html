@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <!-- First Question -->
+        <div id="start" class="step">
+            <h1>Do you want to go on a date?</h1>
+            <button onclick="nextStep('yesOrNo')">Yes</button>
+            <button onclick="showSubmitMessage()">No</button>
+        </div>
+
+        <!-- Second Question -->
+        <div id="yesOrNo" class="step">
+            <h1>Inside or Outside?</h1>
+            <button onclick="nextStep('outside')">Outside</button>
+            <button onclick="nextStep('inside')">Inside</button>
+        </div>
+
+        <!-- Outside Options -->
+        <div id="outside" class="step">
+            <h1>What kind of date?</h1>
+            <button onclick="nextStep('picnic')">Picnic</button>
+            <button onclick="nextStep('restaurant')">Restaurant</button>
+            <button onclick="nextStep('movies')">Movies</button>
+        </div>
+
+        <!-- Inside Options -->
+        <div id="inside" class="step">
+            <h1>What kind of night?</h1>
+            <button onclick="nextStep('moviesNight')">Movies Night</button>
+            <button onclick="nextStep('gamesNight')">Games Night</button>
+        </div>
+
+        <!-- Picnic Options -->
+        <div id="picnic" class="step">
+            <h1>Where?</h1>
+            <button onclick="chooseDate('River')">River</button>
+            <button onclick="chooseDate('Dam')">Dam</button>
+        </div>
+
+        <!-- Restaurant Options -->
+        <div id="restaurant" class="step">
+            <h1>Which Restaurant?</h1>
+            <button onclick="chooseDate('River Cafe')">River Cafe</button>
+            <button onclick="chooseDate('Loop St')">Loop St</button>
+            <button onclick="chooseDate('Hennies')">Hennies</button>
+        </div>
+
+        <!-- Movies Options -->
+        <div id="movies" class="step">
+            <h1>Where?</h1>
+            <button onclick="chooseDate('My Place')">My Place</button>
+            <button onclick="chooseDate('Your Place')">Your Place</button>
+        </div>
+
+        <!-- Inside Options - Movies Night or Games Night -->
+        <div id="moviesNight" class="step">
+            <h1>Where?</h1>
+            <button onclick="chooseDate('My Place')">My Place</button>
+            <button onclick="chooseDate('Your Place')">Your Place</button>
+        </div>
+
+        <div id="gamesNight" class="step">
+            <h1>Where?</h1>
+            <button onclick="chooseDate('My Place')">My Place</button>
+            <button onclick="chooseDate('Your Place')">Your Place</button>
+        </div>
+
+        <!-- New Date and Time Selection Section -->
+        <div id="dateAndTime" class="step">
+            <h1>Choose a Date and Time</h1>
+            <label for="date">Date:</label>
+            <input type="date" id="date">
+            <br><br>
+            <label for="time">Time:</label>
+            <input type="time" id="time">
+            <br><br>
+            <button onclick="confirmDateAndTime()">Next</button>
+        </div>
+
+        <!-- Final Step -->
+        <div id="chooseDate" class="step">
+            <h1>You chose: <span id="selectedDate"></span></h1>
+            <button onclick="submitChoice()">Submit</button>
+        </div>
+
+        <!-- Submit Message -->
+        <div id="submitMessage" class="step">
+            <h1>Thank you! I'll be in touch to confirm the details.</h1>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
