@@ -17,16 +17,28 @@ Choose between indoor and outdoor date settings.
 Select specific locations, dates, and times.
 Submits the chosen options to an Oracle database.
 Heart animations for a more engaging user experience. 💖
+
 Technologies Used
+
 Frontend: HTML, CSS, JavaScript
+
 Backend: Node.js, Express
+
 Database: Oracle Database (using oracledb module)
+
 Other Tools: Fetch API for communicating with the backend server
+
 Setup and Installation
+
 Prerequisites
+
 Node.js (v18 or higher)
+
 Oracle Database (setup and running locally)
+
 Git (optional, for version control)
+
+
 Installation
 Clone the repository:
 
@@ -81,17 +93,24 @@ Open your web browser and navigate to:
     
 Interact with the application, select date options, and submit your choice.
 
+
 Check your Oracle Database to ensure that the data has been stored correctly.
+
 
 Database Configuration
 The application uses Oracle Database to store the selected date options. To configure your database:
 
+
 Make sure the oracledb module is installed in your Node.js environment.
+
 Update your database credentials in the server.js file.
+
 Ensure the database is running locally or on a server that the application can access.
+
 Note: The database files are not included in this repository. You will need to set up the database independently.
 
 Contributing
+
 If you'd like to contribute to this project:
 
 Fork the repository.
