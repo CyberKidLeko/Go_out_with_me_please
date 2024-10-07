@@ -6,11 +6,13 @@ const app = express();
 const PORT = 7000;
 
 // Oracle DB Configurations
-const dbConfig = {
-    user: 'Lekoh',
-    password: 'lekoh123',
+//modify:
+
+/*const dbConfig = {
+    user: '******',
+    password: '*******',
     connectString: 'localhost/XEPDB1'
-};
+};*/
 
 // Middleware
 app.use(cors());
