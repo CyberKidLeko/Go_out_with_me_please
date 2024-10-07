@@ -10,14 +10,16 @@
     <div id="container">
         <!-- First Question -->
         <div id="start" class="step">
-            <h1>Do you want to go on a date?</h1>
+            <h1>Will you go out on a date with me?</h1>
+            <img class ="pics" src="img/please.jpg" alt = 'picture of puss in boots'>
             <button onclick="nextStep('yesOrNo')">Yes</button>
-            <button onclick="showSubmitMessage()">No</button>
+            <button onclick="showSadMessage()">No</button>
         </div>
 
         <!-- Second Question -->
         <div id="yesOrNo" class="step">
             <h1>Inside or Outside?</h1>
+            <img class ="pics" src="img/outdoorindoor.jpg" alt = 'outside or inside?'>
             <button onclick="nextStep('outside')">Outside</button>
             <button onclick="nextStep('inside')">Inside</button>
         </div>
@@ -55,6 +57,7 @@
         <!-- Movies Options -->
         <div id="movies" class="step">
             <h1>Where?</h1>
+            <img class ="pics" src="img/coming.gif" alt = 'coming?'>
             <button onclick="chooseDate('My Place')">My Place</button>
             <button onclick="chooseDate('Your Place')">Your Place</button>
         </div>
@@ -62,12 +65,14 @@
         <!-- Inside Options - Movies Night or Games Night -->
         <div id="moviesNight" class="step">
             <h1>Where?</h1>
+            <img class ="pics" src="img/coming.gif" alt = 'coming?'>
             <button onclick="chooseDate('My Place')">My Place</button>
             <button onclick="chooseDate('Your Place')">Your Place</button>
         </div>
 
         <div id="gamesNight" class="step">
             <h1>Where?</h1>
+            <img class ="pics" src="img/coming.gif" alt = 'coming?'>
             <button onclick="chooseDate('My Place')">My Place</button>
             <button onclick="chooseDate('Your Place')">Your Place</button>
         </div>
@@ -75,6 +80,7 @@
         <!-- New Date and Time Selection Section -->
         <div id="dateAndTime" class="step">
             <h1>Choose a Date and Time</h1>
+            <img class ="pics" src="img/calendar.jpg" alt = 'picture of calendar'>
             <label for="date">Date:</label>
             <input type="date" id="date">
             <br><br>
@@ -86,13 +92,20 @@
 
         <!-- Final Step -->
         <div id="chooseDate" class="step">
-            <h1>You chose: <span id="selectedDate"></span></h1>
+            <h1>You chose:<br> <span id="selectedDate"></span></h1>
             <button onclick="submitChoice()">Submit</button>
         </div>
 
         <!-- Submit Message -->
         <div id="submitMessage" class="step">
+            <img class ="pics" src="img/cantwait.jpg" alt = 'cant wait cute pic'>
             <h1>Thank you! I'll be in touch to confirm the details.</h1>
+        </div>
+        <!--for no on first answer-->
+        <div id="sadMessage" class="step">
+            <h1>Sorry, goodbye 😔</h1>
+            <img class ="pics" src="img/sorry.jpg" alt = 'picture of spongebob'>
+            <p>Thank you for your time. Have a great day!</p>
         </div>
     </div>
 

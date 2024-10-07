@@ -24,9 +24,14 @@ function submitChoice() {
     nextStep('submitMessage');
 }
 
-// Show the submit message for 'No' option
+// Show the submit message for option
 function showSubmitMessage() {
     nextStep('submitMessage');
+}
+
+function showSadMessage() {
+    hideAllSteps(); // Hide other steps
+    document.getElementById('sadMessage').style.display = 'block'; // Show sad message page
 }
 
 function chooseDate(location) {
@@ -34,7 +39,7 @@ function chooseDate(location) {
     nextStep('dateAndTime');  // Go to date and time selection step
 }
 
-// Function to confirm date and time selection and display the final step
+//Function to confirm date and time selection and display the final step
 function confirmDateAndTime() {
     const selectedDate = document.getElementById('date').value;
     const selectedTime = document.getElementById('time').value;
@@ -48,3 +53,18 @@ function confirmDateAndTime() {
         alert("Please select both date and time!");
     }
 }
+
+
+function createHeartAnimation(event) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '💖'; // Heart emoji
+    heart.style.left = `${event.clientX}px`;
+    heart.style.top = `${event.clientY}px`;
+    document.body.appendChild(heart);
+
+    // Remove heart after animation
+    setTimeout(() => heart.remove(), 1500);
+}
+
+document.body.addEventListener('click', createHeartAnimation);
