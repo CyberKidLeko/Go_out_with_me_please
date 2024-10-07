@@ -62,3 +62,4 @@ function createHeartAnimation(event) {
     setTimeout(() => heart.remove(), 1500);
 }
 
+document.body.addEventListener('click', createHeartAnimation);
