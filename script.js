@@ -21,8 +21,37 @@ function chooseDate(location) {
 
 // Show a submit message
 function submitChoice() {
+    const finalResponse = document.getElementById('selectedDate').innerText;
+    localStorage.setItem('finalResponse', finalResponse);  // Store in local storage
+
+    // Set the final response to the hidden input field
+    document.getElementById('finalResponse').innerText = finalResponse;
+    document.getElementById('finalChoice').value = finalResponse; // Assign value to hidden input
+
+    // Google Form action URL (replace with your own action URL)
+    const formActionURL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSc8UMqXrLPagQLVVz5DjbQPMhN2vYBPNDMpSenFzEu_DMohtw/formResponse';
+
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append('entry.YOUR_ENTRY_ID', finalResponse); // Replace YOUR_ENTRY_ID with the correct entry ID from your Google Form
+
+    // Send data to Google Form using fetch
+    fetch(formActionURL, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors' // Enable no-cors mode to avoid CORS issues
+    })
+    .then(response => {
+        // Handle success if needed
+        console.log('Response submitted successfully:', response);
+    })
+    .catch(error => {
+        console.error('Error submitting response:', error);
+    });
+
     nextStep('submitMessage');
 }
+
 
 // Show the submit message for option
 function showSubmitMessage() {
@@ -68,3 +97,25 @@ function createHeartAnimation(event) {
 }
 
 document.body.addEventListener('click', createHeartAnimation);
+
+
+function sendResponseToGoogleForm(response) {
+    const formID = '1n8Jd44Hj-YyCy4BTt6zVEYXdsvncyroQlBKo7lK4x00'; // Your Form ID
+    
+    const entryId = '1ES2QeiKfuAGaMQDiEl3OMruUvbR8o6dxvG1AgBIMNhE';
+
+    const url = `https://docs.google.com/forms/d/e/${formID}/formResponse`;
+
+    const formData = new FormData();
+    formData.append(entryId, response); // Add the response to the form data
+
+    fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+    }).then(() => {
+        console.log('Response sent to Google Form');
+    }).catch(error => {
+        console.error('Error sending response:', error);
+    });
+}
