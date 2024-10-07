@@ -58,7 +58,7 @@ h1 {
 
 .heart {
     position: absolute;
-    font-size: 2em;
+    font-size: 24px;
     animation: float-up 1.5s ease-out forwards; /* Move hearts upwards */
     pointer-events: none; /* Avoid interfering with clicks */
 }
@@ -71,7 +71,7 @@ h1 {
 
 /* Fade-in effect for step transitions */
 .step.fade-in {
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
 @keyframes fadeIn {
