@@ -22,39 +22,32 @@ function chooseDate(location) {
 // Show a submit message
 function submitChoice() {
     const finalResponse = document.getElementById('selectedDate').innerText;
-    localStorage.setItem('finalResponse', finalResponse);  // Store in local storage
+
+    // Store in local storage (optional)
+    localStorage.setItem('finalResponse', finalResponse);
 
     // Set the final response to the hidden input field
     document.getElementById('finalResponse').innerText = finalResponse;
-    document.getElementById('finalChoice').value = finalResponse; // Assign value to hidden input
+    document.getElementById('finalChoice').value = finalResponse;
 
-    // Google Form action URL (replace with your own action URL)
-    const formActionURL = 'https://docs.google.com/forms/d/e/1FAIpQLSc8UMqXrLPagQLVVz5DjbQPMhN2vYBPNDMpSenFzEu_DMohtw/formResponse';
-    
-    // Create a FormData object
-    const formData = new FormData();
-    formData.append('1ES2QeiKfuAGaMQDiEl3OMruUvbR8o6dxvG1AgBIMNhE', finalResponse); // Replace YOUR_ENTRY_ID with the correct entry ID from your Google Form
-
-    console.log('Final Response:', finalResponse);
-    console.log('FormData Entries:', Array.from(formData.entries())); // Log entries here
-;
-    // Send data to Google Form using fetch
-    fetch(formActionURL, {
+    // Send data to the backend server
+    fetch('http://localhost:3000/submit-form', {
         method: 'POST',
-        body: formData,
-        //mode: 'no-cors' // Enable no-cors mode to avoid CORS issues
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ finalChoice: finalResponse })
     })
-    .then(response => {
-        // Handle success if needed
-        console.log('Response submitted successfully:', response);
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Response submitted successfully');
+            nextStep('submitMessage');
+        } else {
+            console.error('Error submitting response:', data.message);
+        }
     })
     .catch(error => {
         console.error('Error submitting response:', error);
     });
-
-    nextStep('submitMessage');
-
-    
 }
 
 
