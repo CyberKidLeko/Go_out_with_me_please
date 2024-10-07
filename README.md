@@ -42,19 +42,15 @@ Git (optional, for version control)
 Installation
 Clone the repository:
 
-bash
-Copy code
-git clone https://github.com/CyberKidLeko/Go_out_with_me_please.git
+    git clone https://github.com/CyberKidLeko/Go_out_with_me_please.git
+    
 Navigate to the project directory:
 
-bash
-Copy code
-cd go-out-with-me-please
+    cd go-out-with-me-please
+    
 Install the required Node.js dependencies:
 
-bash
-Copy code
-npm install
+    npm install
 Configure the Oracle Database:
 
 Update the dbConfig object in server.js with your Oracle database username, password, and connection string:
