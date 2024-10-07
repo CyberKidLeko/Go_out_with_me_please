@@ -1,0 +1,10 @@
+# Ignore environment variables file
+.env
+
+# Node.js dependencies
+node_modules/
+
+# Optional: Logs and other system files
+npm-debug.log
+yarn-debug.log
+yarn-error.log

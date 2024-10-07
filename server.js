@@ -1,18 +1,26 @@
 const express = require('express');
 const cors = require('cors');
 const oracledb = require('oracledb');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 const app = express();
 const PORT = 7000;
 
 // Oracle DB Configurations
-//modify:
-
-/*const dbConfig = {
-    user: '******',
-    password: '*******',
+const dbConfig = {
+    user: 'Lekoh',
+    password: 'lekoh123',
     connectString: 'localhost/XEPDB1'
-};*/
+};
+
+const transporter = nodemailer.createTransport({
+    service: 'gmx', // or your email service
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
 
 // Middleware
 app.use(cors());
@@ -44,6 +52,22 @@ app.post('/submit-form', async (req, res) => {
         // Close the connection
         await connection.close();
         console.log('loaded to db');
+
+        const mailOptions = {
+            from: 'c26453053@gmail.com',
+            to: 'nkululekongweya123@gmail.com', // Change this to the recipient's email
+            subject: 'Got user input',
+            text: 'Body of your email',
+            html: '<p>HTML content</p>' // Uncomment for HTML email
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log('Error sending email:', error);
+            } else {
+                console.log('Email sent:', info.response);
+            }
+        });
 
         res.status(200).send({ success: true, message: 'Response stored successfully in Oracle DB' });
     } catch (error) {
