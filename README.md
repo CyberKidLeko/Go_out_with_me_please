@@ -1,16 +1,26 @@
 Go Out With Me Please 🎉
+
 Project Overview
 Go Out With Me Please is a simple interactive web application where users can choose date options through a series of prompts. The goal is to make selecting a date and location fun and engaging! The app offers various options for going out on a date, such as picnics, restaurants, or movie nights, and allows users to pick specific times and places. 💖
 
 Table of Contents
+
 Project Overview
+
 Features
+
 Technologies Used
+
 Setup and Installation
+
 Running the Application
+
 Database Configuration
+
 Contributing
+
 License
+
 Features
 Interactive question flow to select date options.
 Choose between indoor and outdoor date settings.
@@ -20,17 +30,17 @@ Heart animations for a more engaging user experience. 💖
 
 Technologies Used
 
-Frontend: HTML, CSS, JavaScript
+**Frontend:** HTML, CSS, JavaScript
 
-Backend: Node.js, Express
+**Backend:** Node.js, Express
 
-Database: Oracle Database (using oracledb module)
+**Database:** Oracle Database (using oracledb module)
 
-Other Tools: Fetch API for communicating with the backend server
+**Other Tools:** Fetch API for communicating with the backend server
 
-Setup and Installation
+**Setup and Installation**
 
-Prerequisites
+**Prerequisites**
 
 Node.js (v18 or higher)
 
@@ -39,7 +49,7 @@ Oracle Database (setup and running locally)
 Git (optional, for version control)
 
 
-Installation
+**Installation**
 Clone the repository:
 
     git clone https://github.com/CyberKidLeko/Go_out_with_me_please.git
@@ -93,7 +103,7 @@ Interact with the application, select date options, and submit your choice.
 Check your Oracle Database to ensure that the data has been stored correctly.
 
 
-Database Configuration
+**Database Configuration**
 The application uses Oracle Database to store the selected date options. To configure your database:
 
 
@@ -105,16 +115,17 @@ Ensure the database is running locally or on a server that the application can a
 
 Note: The database files are not included in this repository. You will need to set up the database independently.
 
-Contributing
+**Contributing**
 
 If you'd like to contribute to this project:
 
 Fork the repository.
+
 Create a new branch (git checkout -b feature-branch-name).
+
 Make your changes and commit them (git commit -m 'Add some feature').
+
 Push to the branch (git push origin feature-branch-name).
 Open a Pull Request.
-We welcome any contributions and improvements!
+I welcome any contributions and improvements!
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
