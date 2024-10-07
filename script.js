@@ -30,11 +30,12 @@ function submitChoice() {
 
     // Google Form action URL (replace with your own action URL)
     const formActionURL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSc8UMqXrLPagQLVVz5DjbQPMhN2vYBPNDMpSenFzEu_DMohtw/formResponse';
-
+    
     // Create a FormData object
     const formData = new FormData();
-    formData.append('entry.YOUR_ENTRY_ID', finalResponse); // Replace YOUR_ENTRY_ID with the correct entry ID from your Google Form
+    formData.append('1ES2QeiKfuAGaMQDiEl3OMruUvbR8o6dxvG1AgBIMNhE', finalResponse); // Replace YOUR_ENTRY_ID with the correct entry ID from your Google Form
 
+    formData.append('finalChoice', finalResponse);
     // Send data to Google Form using fetch
     fetch(formActionURL, {
         method: 'POST',
@@ -50,6 +51,8 @@ function submitChoice() {
     });
 
     nextStep('submitMessage');
+
+    
 }
 
 
