@@ -13,7 +13,7 @@
             <h1>Will you go out on a date with me?</h1>
             <img class ="pics" src="img/please.jpg" alt = 'picture of puss in boots'>
             <button onclick="nextStep('yesOrNo')">Yes</button>
-            <button onclick="showSubmitMessage()">No</button>
+            <button onclick="showSadMessage()">No</button>
         </div>
 
         <!-- Second Question -->
@@ -76,6 +76,7 @@
         <!-- New Date and Time Selection Section -->
         <div id="dateAndTime" class="step">
             <h1>Choose a Date and Time</h1>
+            <img class ="pics" src="img/calendar.jpg" alt = 'picture of calendar'>
             <label for="date">Date:</label>
             <input type="date" id="date">
             <br><br>
@@ -93,7 +94,14 @@
 
         <!-- Submit Message -->
         <div id="submitMessage" class="step">
+            <img class ="pics" src="img/cantwait.jpg" alt = 'cant wait cute pic'>
             <h1>Thank you! I'll be in touch to confirm the details.</h1>
+        </div>
+        <!--for no on first answer-->
+        <div id="sadMessage" class="step">
+            <h1>Sorry, goodbye 😔</h1>
+            <img class ="pics" src="img/sorry.jpg" alt = 'picture of spongebob'>
+            <p>Thank you for your time. Have a great day!</p>
         </div>
     </div>
 

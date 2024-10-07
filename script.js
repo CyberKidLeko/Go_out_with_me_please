@@ -24,9 +24,14 @@ function submitChoice() {
     nextStep('submitMessage');
 }
 
-// Show the submit message for 'No' option
+// Show the submit message for option
 function showSubmitMessage() {
     nextStep('submitMessage');
+}
+
+function showSadMessage() {
+    hideAllSteps(); // Hide other steps
+    document.getElementById('sadMessage').style.display = 'block'; // Show sad message page
 }
 
 function chooseDate(location) {
