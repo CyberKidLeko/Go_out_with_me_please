@@ -1,9 +1,16 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
-const axios = require('axios'); // Optional: Use axios if you prefer making HTTP requests easily
+const oracledb = require('oracledb');
+
 const app = express();
-const PORT = 3000;
+const PORT = 7000;
+
+// Oracle DB Configurations
+const dbConfig = {
+    user: 'Lekoh',
+    password: 'lekoh123',
+    connectString: 'localhost/XEPDB1'
+};
 
 // Middleware
 app.use(cors());
@@ -11,25 +18,36 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Endpoint to handle form submission
-app.post('/submit-form', (req, res) => {
+app.post('/submit-form', async (req, res) => {
     const formData = req.body;
 
-    // Replace with your Google Form URL
-    const googleFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLSc8UMqXrLPagQLVVz5DjbQPMhN2vYBPNDMpSenFzEu_DMohtw/formResponse';
+    try {
+        // Establish connection to Oracle DB
+        const connection = await oracledb.getConnection(dbConfig);
 
-    // Format the data to be sent to Google Form
-    const formattedData = new URLSearchParams();
-    formattedData.append('entry.1ES2QeiKfuAGaMQDiEl3OMruUvbR8o6dxvG1AgBIMNhE', formData.finalChoice);
+        // SQL query to insert data into the 'date_choices' table
+        const insertQuery = `INSERT INTO date_choices (location, date_of_event, time_of_event) 
+                             VALUES (:location, TO_DATE(:date_of_event, 'YYYY-MM-DD'), :time_of_event)`;
 
-    // Make a POST request to Google Form
-    axios.post(googleFormURL, formattedData)
-        .then(response => {
-            res.status(200).send({ success: true, message: 'Response submitted successfully' });
-        })
-        .catch(error => {
-            console.error('Error submitting to Google Form:', error);
-            res.status(500).send({ success: false, message: 'Failed to submit response' });
+        // Execute the query with form data
+        await connection.execute(insertQuery, {
+            location: formData.location,  // Field name should match the one sent from frontend
+            date_of_event: formData.date, // Date value from frontend
+            time_of_event: formData.time  // Time value from frontend
         });
+
+        // Commit the transaction
+        await connection.commit();
+
+        // Close the connection
+        await connection.close();
+        console.log('loaded to db');
+
+        res.status(200).send({ success: true, message: 'Response stored successfully in Oracle DB' });
+    } catch (error) {
+        console.error('Error storing data in Oracle DB:', error);
+        res.status(500).send({ success: false, message: 'Failed to store response in DB' });
+    }
 });
 
 // Start the server

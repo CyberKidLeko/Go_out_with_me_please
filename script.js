@@ -16,25 +16,43 @@ document.getElementById('start').classList.add('active');
 // Handle choosing the date
 function chooseDate(location) {
     document.getElementById('selectedDate').innerText = location;
-    nextStep('chooseDate');
+    nextStep('dateAndTime'); // Go to date and time selection step
 }
 
-// Show a submit message
+// Function to confirm date and time selection and display the final step
+function confirmDateAndTime() {
+    const selectedDate = document.getElementById('date').value;
+    const selectedTime = document.getElementById('time').value;
+
+    // Validate that both date and time are selected
+    if (selectedDate && selectedTime) {
+        const location = document.getElementById('selectedDate').innerText;
+        const dateTimeMessage = `Location: ${location}, Date: ${selectedDate}, Time: ${selectedTime}`;
+        document.getElementById('selectedDate').innerText = dateTimeMessage;
+        nextStep('chooseDate'); // Move to the final confirmation step
+    } else {
+        alert("Please select both date and time!");
+    }
+}
+
+// Show a submit message after final choice is made
 function submitChoice() {
-    const finalResponse = document.getElementById('selectedDate').innerText;
+    const location = document.getElementById('selectedDate').innerText.split(',')[0].replace('Location: ', '').trim();
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
 
     // Store in local storage (optional)
-    localStorage.setItem('finalResponse', finalResponse);
+    localStorage.setItem('finalResponse', location);
 
     // Set the final response to the hidden input field
-    document.getElementById('finalResponse').innerText = finalResponse;
-    document.getElementById('finalChoice').value = finalResponse;
+    document.getElementById('finalResponse').innerText = location;
+    document.getElementById('finalChoice').value = location;
 
     // Send data to the backend server
-    fetch('http://localhost:3000/submit-form', {
+    fetch('http://localhost:7000/submit-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ finalChoice: finalResponse })
+        body: JSON.stringify({ location: location, date: date, time: time })
     })
     .then(response => response.json())
     .then(data => {
@@ -50,38 +68,13 @@ function submitChoice() {
     });
 }
 
-
-// Show the submit message for option
-function showSubmitMessage() {
-    nextStep('submitMessage');
-}
-
+// Function to show the sad message if user says "No"
 function showSadMessage() {
     hideAllSteps(); // Hide other steps
     document.getElementById('sadMessage').style.display = 'block'; // Show sad message page
 }
 
-function chooseDate(location) {
-    document.getElementById('selectedDate').innerText = location;
-    nextStep('dateAndTime');  // Go to date and time selection step
-}
-
-//Function to confirm date and time selection and display the final step
-function confirmDateAndTime() {
-    const selectedDate = document.getElementById('date').value;
-    const selectedTime = document.getElementById('time').value;
-
-    // Validate that both date and time are selected
-    if (selectedDate && selectedTime) {
-        const dateTimeMessage = `Location: ${document.getElementById('selectedDate').innerText}, Date: ${selectedDate}, Time: ${selectedTime}`;
-        document.getElementById('selectedDate').innerText = dateTimeMessage;
-        nextStep('chooseDate');  // Move to the final confirmation step
-    } else {
-        alert("Please select both date and time!");
-    }
-}
-
-
+// Heart animation function to add interactive effects
 function createHeartAnimation(event) {
     const heart = document.createElement('div');
     heart.className = 'heart';
@@ -94,26 +87,5 @@ function createHeartAnimation(event) {
     setTimeout(() => heart.remove(), 1500);
 }
 
+// Add event listener to the body for heart animation effect
 document.body.addEventListener('click', createHeartAnimation);
-
-
-function sendResponseToGoogleForm(response) {
-    const formID = '1n8Jd44Hj-YyCy4BTt6zVEYXdsvncyroQlBKo7lK4x00'; // Your Form ID
-    
-    const entryId = '1ES2QeiKfuAGaMQDiEl3OMruUvbR8o6dxvG1AgBIMNhE';
-
-    const url = `https://docs.google.com/forms/d/e/${formID}/formResponse`;
-
-    const formData = new FormData();
-    formData.append(entryId, response); // Add the response to the form data
-
-    fetch(url, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
-    }).then(() => {
-        console.log('Response sent to Google Form');
-    }).catch(error => {
-        console.error('Error sending response:', error);
-    });
-}
