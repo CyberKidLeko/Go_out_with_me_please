@@ -10,6 +10,10 @@ body, html {
     margin: 0 auto;
     padding: 20px;
     text-align: center;
+    background-color: #e390b1;
+    border: 2px solid #ff69b4; /* Hot pink border */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .step {
@@ -25,8 +29,19 @@ button {
     margin: 10px;
     font-size: 16px;
     cursor: pointer;
+    background-color: #ff69b4; /* Hot pink buttons */
+    color: white; /* White text for contrast */
+    border: none;
+    border-radius: 12px; /* Rounded button corners */
+    padding: 10px 20px; 
+    transition: background-color 0.3s;
 }
-/*try2*/
+
+button:hover {
+    background-color: #ff1493; /* Darker pink on hover */
+}
+
+
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
@@ -36,4 +51,30 @@ h1 {
     height: 300px;
     width: 370px;
     display: block;
+    margin: 10px auto;
+}
+
+
+
+.heart {
+    position: absolute;
+    font-size: 2em;
+    animation: float-up 1.5s ease-out forwards; /* Move hearts upwards */
+    pointer-events: none; /* Avoid interfering with clicks */
+}
+
+/* Keyframes for floating hearts */
+@keyframes float-up {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-150px); opacity: 0; }
+}
+
+/* Fade-in effect for step transitions */
+.step.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
 }

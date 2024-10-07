@@ -48,3 +48,17 @@ function confirmDateAndTime() {
         alert("Please select both date and time!");
     }
 }
+
+
+function createHeartAnimation(event) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '💖'; // Heart emoji
+    heart.style.left = `${event.clientX}px`;
+    heart.style.top = `${event.clientY}px`;
+    document.body.appendChild(heart);
+
+    // Remove heart after animation
+    setTimeout(() => heart.remove(), 1500);
+}
+
