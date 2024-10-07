@@ -15,7 +15,7 @@ const dbConfig = {
 };
 
 const transporter = nodemailer.createTransport({
-    service: 'gmx', // or your email service
+    service: 'gmx',
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
