@@ -29,18 +29,20 @@ function submitChoice() {
     document.getElementById('finalChoice').value = finalResponse; // Assign value to hidden input
 
     // Google Form action URL (replace with your own action URL)
-    const formActionURL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSc8UMqXrLPagQLVVz5DjbQPMhN2vYBPNDMpSenFzEu_DMohtw/formResponse';
+    const formActionURL = 'https://docs.google.com/forms/d/e/1FAIpQLSc8UMqXrLPagQLVVz5DjbQPMhN2vYBPNDMpSenFzEu_DMohtw/formResponse';
     
     // Create a FormData object
     const formData = new FormData();
     formData.append('1ES2QeiKfuAGaMQDiEl3OMruUvbR8o6dxvG1AgBIMNhE', finalResponse); // Replace YOUR_ENTRY_ID with the correct entry ID from your Google Form
 
-    formData.append('finalChoice', finalResponse);
+    console.log('Final Response:', finalResponse);
+    console.log('FormData Entries:', Array.from(formData.entries())); // Log entries here
+;
     // Send data to Google Form using fetch
     fetch(formActionURL, {
         method: 'POST',
         body: formData,
-        mode: 'no-cors' // Enable no-cors mode to avoid CORS issues
+        //mode: 'no-cors' // Enable no-cors mode to avoid CORS issues
     })
     .then(response => {
         // Handle success if needed
