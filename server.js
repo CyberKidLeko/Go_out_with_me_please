@@ -1,21 +1,24 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const oracledb = require('oracledb');
 const nodemailer = require('nodemailer');
-require('dotenv').config();
+
 
 const app = express();
 const PORT = 7000;
 
-// Oracle DB Configurations
+/* Oracle DB Configurations
 const dbConfig = {
-    user: 'Lekoh',
-    password: 'lekoh123',
+    user: '*****',
+    password: '********',
     connectString: 'localhost/XEPDB1'
-};
+};*/
 
 const transporter = nodemailer.createTransport({
-    service: 'gmx',
+    host: 'mail.gmx.com',
+    port: 587,
+    secure: false,
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
@@ -54,19 +57,19 @@ app.post('/submit-form', async (req, res) => {
         console.log('loaded to db');
 
         const mailOptions = {
-            from: 'c26453053@gmail.com',
-            to: 'nkululekongweya123@gmail.com', // Change this to the recipient's email
+            from: process.env.EMAIL_USER,
+            to: '*************@gmail.com', // Change this to the email youll receive notifications on
             subject: 'Got user input',
-            text: 'Body of your email',
-            html: '<p>HTML content</p>' // Uncomment for HTML email
+            text:`Form data: ${JSON.stringify(formData)}`
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                console.log('Error sending email:', error);
-            } else {
-                console.log('Email sent:', info.response);
+                console.error('Error sending email:', error);
+                return res.status(500).send({ success: false, message: 'Failed to send email', error: error.message });
             }
+            console.log('Email sent:', info.response);
+            res.status(200).send({ success: true, message: 'Email sent successfully' });
         });
 
         res.status(200).send({ success: true, message: 'Response stored successfully in Oracle DB' });
